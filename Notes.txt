@@ -1,0 +1,2 @@
+###
+The spring boot dependencies added were -- Spring web --- JPA
