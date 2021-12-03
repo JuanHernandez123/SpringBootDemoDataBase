@@ -5,9 +5,18 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 
+import org.springframework.stereotype.Component;
+
 import com.countryservice.demoCountries.beans.Country;
 import com.countryservice.demoCountries.controllers.AddResponse;
 
+/**
+ * This class contains all the functions to handle the data, is the most important class. Also, will be called from controller class
+ * @author JMHR
+ *
+ */
+
+@Component // This annotation is used to inject this class in other. For this case This class will be injected in CountryController
 public class CountryService {
 	
 	////################ Spring boot automatically return the objects in JSON format
@@ -82,7 +91,7 @@ public class CountryService {
 		return country;
 	}
 	
-	// This methos is used to remove an specific row and return a message
+	// This method is used to remove an specific row and return a message
 	public AddResponse deleteCountry(int id) {
 		countryIdMap.remove(id);
 		AddResponse res = new AddResponse();
