@@ -1,2 +1,45 @@
 ###
 The spring boot dependencies added were -- Spring web --- JPA
+
+########################################################
+Hot to kill the tomcat server when is execute by Eclipse
+########################################################
+
+From the CMD execute the below line to know what is the ID of the service
+netstat -aon | find "8090"
+Example:
+  TCP    0.0.0.0:8080           0.0.0.0:0              LISTENING       8452
+  TCP    [::]:8080              [::]:0                 LISTENING       8452
+
+After, execute the below line to stop the service
+taskkill /pid 8452 /f
+
+##########################
+How to work with databases
+##########################
+1. Create a database an a table
+2. Add Jpa dependency & Mysql connector dependencies in pom.xml
+3. Add Mysql properties on the application.properties file
+3. Create Bean/Entity class (One bean class should be create per each table)
+4. Create repository interface. This allows the communication between Bean class and database.
+   Also, we don't need to execute any sql sentence because the repository handle this internally
+
+
+Important!!
+When is used Spring boot with Jpa dependency it's not necessary a connection class because all the configuration 
+is done in the application.properties file
+
+Flow!!
+
+		http response
+Client <-------------> Country Controller <--> Country service <--> Country Bean Country Repository <--> Database
+       http request
+       
+Database Notes::
+
+create database database_name_test;
+use database_name_test;
+CREATE TABLE country (id integer, capital VARCHAR(20), country_name VARCHAR(20), PRIMARY KEY (id));
+drop table country;
+select * from country;
+describe country;

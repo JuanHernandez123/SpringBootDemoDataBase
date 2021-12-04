@@ -1,12 +1,31 @@
 package com.countryservice.demoCountries.beans;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+//POJO Class or Bean class
+
+@Entity //This annotation means that this class reflects a table in the db
+@Table(name="country") // This is the name of the table
 public class Country {
 	
-	//POJO Class or Bean class
-	
+	@Id // This annotation should be present when the column is a primary key
+	@Column(name="id")
 	int id;
+	
+	@Column(name="country_name")
 	String countryName;
+	
+	@Column(name="capital")
 	String countryCapital;
+	
+	//This constructor is implemented to take the default values because when is implemented
+	// the database, we are not to use the constructor with parameters 
+	public Country() {
+		
+	}	
 	
 	public Country(int id, String countryName, String countryCapital) {
 		this.id = id;
