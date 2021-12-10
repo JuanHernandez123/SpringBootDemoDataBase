@@ -1,8 +1,6 @@
-package com.countryservice.demoCountries.repositories;
+package com.countryservice.demo;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-
-import com.countryservice.demoCountries.beans.Country;
 
 //JpaRepository is the tool that will help us to communicate with the database
 //Country parameter is the Bean class

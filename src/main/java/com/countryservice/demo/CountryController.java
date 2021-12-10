@@ -1,4 +1,4 @@
-package com.countryservice.demoCountries.controllers;
+package com.countryservice.demo;
 
 import java.util.List;
 
@@ -14,8 +14,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.countryservice.demoCountries.beans.Country;
-import com.countryservice.demoCountries.services.CountryService;
 
 /**
  * This class will call the CountryService methods
@@ -31,6 +29,7 @@ public class CountryController {
 				// the object creation from the class
 				// @Autowired -- is dependency injection
 	CountryService countryService;
+
 
 	// /getcountries - is the end point path
 	// http://localhost:8080/getcountries

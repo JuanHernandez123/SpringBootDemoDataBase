@@ -1,4 +1,4 @@
-package com.countryservice.demoCountries.services;
+package com.countryservice.demo;
 
 import java.util.List;
 
@@ -6,9 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
-import com.countryservice.demoCountries.beans.Country;
-import com.countryservice.demoCountries.controllers.AddResponse;
-import com.countryservice.demoCountries.repositories.CountryRepository;
+
 
 /**
  * Service class This class contains all the functions to handle the data, is
@@ -17,6 +15,7 @@ import com.countryservice.demoCountries.repositories.CountryRepository;
  * @author JMHR
  *
  */
+
 
 @Component // This annotation is used to inject this class in other. For this case This
 			// class will be injected in CountryController

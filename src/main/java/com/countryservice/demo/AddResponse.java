@@ -1,4 +1,4 @@
-package com.countryservice.demoCountries.controllers;
+package com.countryservice.demo;
 
 public class AddResponse {
 	private int id;
