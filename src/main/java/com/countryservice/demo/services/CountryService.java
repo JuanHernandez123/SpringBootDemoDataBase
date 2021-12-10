@@ -1,10 +1,14 @@
-package com.countryservice.demo;
+package com.countryservice.demo.services;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
+
+import com.countryservice.demo.beans.Country;
+import com.countryservice.demo.controllers.AddResponse;
+import com.countryservice.demo.repositories.CountryRepository;
 
 
 

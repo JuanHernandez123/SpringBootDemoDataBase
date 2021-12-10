@@ -1,4 +1,4 @@
-package com.countryservice.demo;
+package com.countryservice.demo.controllers;
 
 import java.util.List;
 
@@ -13,6 +13,9 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.countryservice.demo.beans.Country;
+import com.countryservice.demo.services.CountryService;
 
 
 /**
@@ -54,6 +57,7 @@ public class CountryController {
 
 	// @RequestParam -- is used when will be implemented a query path
 	// http://localhost:8080/getcountries/countryname?name=UK
+	//{"id": 2,"countryName": "USA","countryCapital": "Washington"}
 	@GetMapping("/getcountries/countryname")
 	public ResponseEntity<Country> getCountryByName(@RequestParam(value = "name") String name) {
 		try {
@@ -71,6 +75,8 @@ public class CountryController {
 	// create a new country
 	// http://localhost:8080/addcountry
 	// Body::: { "countryName": "Colombia","countryCapital": "Bogotá"}
+	// Response:: {"id": 4,"countryName": "Colombia", "countryCapital": "Bogotá"}
+	
 	@PostMapping("/addcountry")
 	public Country addCountry(@RequestBody Country country) {
 		return countryService.addCountry(country);
@@ -78,8 +84,9 @@ public class CountryController {
 
 	// @RequestBody -- Is used because the method will receive a JSON parameter to
 	// update a country
-	// http://localhost:8080/updatecountry
-	// Body:: { "id": "2", "countryName": "Ecuador","countryCapital": "Quito"}
+	// http://localhost:8080/updatecountry/2
+	// Body:: {"countryName": "Ecuador","countryCapital": "Quito"}
+	// Response:: {"id": 2,"countryName": "Ecuador","countryCapital": "Quito"}
 	@PutMapping("/updatecountry/{id}")
 	public ResponseEntity<Country> updateCountry(@PathVariable(value = "id") int id, @RequestBody Country country) {
 

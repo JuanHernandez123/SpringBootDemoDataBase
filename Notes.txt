@@ -1,4 +1,6 @@
 ###
+The main class should be located at the root of the projects. Above to others directories 
+###
 The spring boot dependencies added were -- Spring web --- JPA
 
 ########################################################
