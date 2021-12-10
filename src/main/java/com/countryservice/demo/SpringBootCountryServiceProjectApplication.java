@@ -1,4 +1,4 @@
-package com.countryservice.demoCountries.beans;
+package com.countryservice.demo;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
