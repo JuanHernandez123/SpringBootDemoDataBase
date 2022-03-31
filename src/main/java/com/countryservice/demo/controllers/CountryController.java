@@ -1,6 +1,7 @@
 package com.countryservice.demo.controllers;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,7 +18,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.countryservice.demo.beans.Country;
 import com.countryservice.demo.services.CountryService;
 
-
 /**
  * This class will call the CountryService methods
  * 
@@ -33,12 +33,17 @@ public class CountryController {
 				// @Autowired -- is dependency injection
 	CountryService countryService;
 
-
 	// /getcountries - is the end point path
 	// http://localhost:8080/getcountries
 	@GetMapping("/getcountries")
-	public List<Country> getCountries() {
-		return countryService.getAllCountries();
+	public ResponseEntity<List<Country>> getCountries() {
+		try {
+			List<Country> countries = countryService.getAllCountries();
+			return new ResponseEntity<List<Country>>(countries, HttpStatus.FOUND);
+		} catch (Exception e) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+
 	}
 
 	// http://localhost:8080/getcountries/1
@@ -57,7 +62,7 @@ public class CountryController {
 
 	// @RequestParam -- is used when will be implemented a query path
 	// http://localhost:8080/getcountries/countryname?name=UK
-	//{"id": 2,"countryName": "USA","countryCapital": "Washington"}
+	// {"id": 2,"countryName": "USA","countryCapital": "Washington"}
 	@GetMapping("/getcountries/countryname")
 	public ResponseEntity<Country> getCountryByName(@RequestParam(value = "name") String name) {
 		try {
@@ -76,10 +81,16 @@ public class CountryController {
 	// http://localhost:8080/addcountry
 	// Body::: { "countryName": "Colombia","countryCapital": "Bogotá"}
 	// Response:: {"id": 4,"countryName": "Colombia", "countryCapital": "Bogotá"}
-	
+
 	@PostMapping("/addcountry")
-	public Country addCountry(@RequestBody Country country) {
-		return countryService.addCountry(country);
+	public ResponseEntity<Country> addCountry(@RequestBody Country country) {
+		try {
+			country = countryService.addCountry(country);
+			return new ResponseEntity<Country>(country, HttpStatus.CREATED);
+		} catch (NoSuchElementException e) {
+			return new ResponseEntity<>(HttpStatus.CONFLICT);
+		}
+
 	}
 
 	// @RequestBody -- Is used because the method will receive a JSON parameter to
@@ -109,7 +120,15 @@ public class CountryController {
 	// http://localhost:8080/deletecountry/2
 	// Response: {"id": 2, "msg": "Country deleted.."}
 	@DeleteMapping("/deletecountry/{id}")
-	public AddResponse deleteCountry(@PathVariable(value = "id") int id) {
-		return countryService.deleteCountry(id);
+	public ResponseEntity<Country> deleteCountry(@PathVariable(value = "id") int id) {
+		Country country = null;
+		try {
+			country = countryService.getCountrybyID(id);
+			countryService.deleteCountry(country);
+
+		} catch (NoSuchElementException e) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<Country>(country, HttpStatus.OK);
 	}
 }

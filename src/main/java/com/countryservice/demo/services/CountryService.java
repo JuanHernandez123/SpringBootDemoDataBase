@@ -38,12 +38,20 @@ public class CountryService {
 
 	// This method returns the list of all the countries
 	public List<Country> getAllCountries() {
-		return countryrep.findAll(); // Will return all the data available in the table
+		List<Country> countries = countryrep.findAll();
+		return countries; // Will return all the data available in the table
 	}
 
 	// This method returns an specific information country
 	public Country getCountrybyID(int id) {
-		return countryrep.findById(id).get();
+		List<Country> countries= countryrep.findAll();
+		Country country = null;
+		
+		for(Country con: countries){
+			if(con.getId()==id)
+				country =con;
+		}
+		return country;			
 	}
 
 	// This method returns the object according to the country name
@@ -79,12 +87,8 @@ public class CountryService {
 	}
 
 	// This method is used to remove an specific row and return a message
-	public AddResponse deleteCountry(int id) {
-		countryrep.deleteById(id);
-		AddResponse res = new AddResponse();
-		res.setMsg("Country Deleted !!!");
-		res.setId(id);
-		return res;
+	public void deleteCountry(Country country) {
+		countryrep.delete(country);		
 	}
 
 }

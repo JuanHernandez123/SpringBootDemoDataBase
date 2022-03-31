@@ -21,7 +21,7 @@ public class Country {
 	@Column(name="capital")
 	String countryCapital;
 	
-	//This constructor is implemented to take the default values because when is implemented
+	//This constructor is implemented to take the default values because where is implemented
 	// the database, we are not to use the constructor with parameters 
 	public Country() {
 		

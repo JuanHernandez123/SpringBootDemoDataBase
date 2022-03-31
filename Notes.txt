@@ -1,13 +1,19 @@
-###
-The main class should be located at the root of the projects. Above to others directories 
-###
-The spring boot dependencies added were -- Spring web --- JPA
+###########################################################################################
+In if the port 8080 isn't available, then, go to application.properties file and set the below line of code
+without '#'  
+
+##server.port = 8082
+
+############################################################################################
+ * The main class should be located at the root of the projects. Above to others directories 
+ * The spring boot dependencies added were -- Spring web --- JPA
 
 ########################################################
-Hot to kill the tomcat server when is execute by Eclipse
+Hot to kill the Tomcat server when is execute by Eclipse -- (Windows)
 ########################################################
 
 From the CMD execute the below line to know what is the ID of the service
+netstat -aon --> Shows all the active connection
 netstat -aon | find "8090"
 Example:
   TCP    0.0.0.0:8080           0.0.0.0:0              LISTENING       8452
@@ -19,7 +25,8 @@ taskkill /pid 8452 /f
 ##########################
 How to work with databases
 ##########################
-1. Create a database an a table
+
+1. Create a database and a table (check the Queries.sql file)
 2. Add Jpa dependency & Mysql connector dependencies in pom.xml
 3. Add Mysql properties on the application.properties file
 3. Create Bean/Entity class (One bean class should be create per each table)
@@ -45,3 +52,10 @@ CREATE TABLE country (id integer, capital VARCHAR(20), country_name VARCHAR(20),
 drop table country;
 select * from country;
 describe country;
+
+########################
+Run Unit Testing
+########################
+
+Just execute with junit(5) to be sure about that:
+ Right click over test class and go to configuration
