@@ -26,6 +26,9 @@ taskkill /pid 8452 /f
 How to work with databases
 ##########################
 
+Using MySql
+-----------
+
 1. Create a database and a table (check the Queries.sql file)
 2. Add Jpa dependency & Mysql connector dependencies in pom.xml
 3. Add Mysql properties on the application.properties file
@@ -52,6 +55,16 @@ CREATE TABLE country (id integer, capital VARCHAR(20), country_name VARCHAR(20),
 drop table country;
 select * from country;
 describe country;
+
+
+Using H2 DB
+------------
+
+1. Go to properties file and uncomment the H2 Database section
+2. Execute the springboot app
+
+Automatically, will be executed the script allowed in resources/data.sql. Thats means the table Country will be available 
+
 
 ########################
 Run Unit Testing
